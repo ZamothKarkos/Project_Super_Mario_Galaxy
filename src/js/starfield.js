@@ -258,3 +258,4 @@ function initStarfield() {
     removeMediaQueryListener(motionQuery, onMotionChange);
   };
 }
+

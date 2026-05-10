@@ -1,4 +1,4 @@
-Aqui está o documento técnico de especificação para a seção de trailers, estruturado estritamente com base nos elementos mapeados nos arquivos **desktop-print-trailers.jpg** e **mobile-print-trailers.png**.
+Aqui está o documento de especificação técnica para a seção de Trailers, estruturado conforme solicitado e baseado estritamente no mapeamento visual e na hierarquia de camadas do Figma.
 
 ---
 
@@ -6,95 +6,141 @@ Aqui está o documento técnico de especificação para a seção de trailers, e
 
 ## 1. Objetivo
 
-Implementar uma seção de exibição de vídeos promocionais (trailers oficiais) com navegação em carrossel, garantindo fidelidade ao layout de alta fidelidade e acessibilidade na reprodução de mídia via YouTube.
+Implementar uma seção de carrossel de vídeos (trailers) com interface imersiva, destacando conteúdos multimídia através de um player customizado com bordas reagentes e navegação simplificada.
 
 ## 2. Inventário de Elementos
 
-Conforme mapeamento visual, a seção é composta por:
+### 2.1 Conteúdo de Texto
 
-* **Label Superior:** Texto de apoio "ASSISTA AGORA".
-* **Título Principal:** Cabeçalho "Trailers oficiais".
-* **Subtítulo:** Texto descritivo "CLIPES DA AVENTURA NO ESPAÇO".
-* **Marca d'água:** Texto "TRAILERS" em background (Desktop).
-* **Card de Vídeo:** Container com borda iluminada (glow), miniatura e overlays.
-* **Navegação:** Setas direcionais (esquerda/direita) e indicadores de posição (dots).
+* **Overline:** `ASSISTA AGORA` (Texto de apoio superior).
+* **Título Principal:** `Trailers oficiais` (Heading 2).
+* **Subtítulo:** `CLIPES DA AVENTURA NO ESPAÇO` (Texto descritivo inferior).
+* **Watermark (Fundo):** `TRAILERS` (Texto decorativo em baixa opacidade).
+* **Player UI:**
+* Título do Vídeo: `[Título dinâmico vindo da fonte]` (Ex: "The Super Mario Bros. Movie | Official Trailer").
+* Botão CTA: `Assista no YouTube`.
 
-## 3. Estrutura de Camadas (Z-Index)
 
-1. **Nível 0 (Background):** Gradiente de fundo e texto de marca d'água "TRAILERS".
-2. **Nível 1 (Base):** Textos de cabeçalho (Label, Título, Subtítulo).
-3. **Nível 2 (Componente):** Card do trailer e controles de navegação.
-4. **Nível 3 (Overlays):** Botão Play, Ícone de Link e Botão "Assista no YouTube".
 
-## 4. Estrutura HTML Sugerida
+### 2.2 Elementos Visuais
 
-* Seção encapsulada em `<section>`.
-* Títulos hierarquizados: `<span>` (label), `<h1>` (título), `<h2>` ou `<p>` (subtítulo).
-* Container do trailer utilizando `<iframe>` para o embed.
-* Atributos obrigatórios: `loading="lazy"`, `title="The Super Mario Bros. Movie | Official Trailer"`.
-* URLs de referência: `[TRAILER_URL_1]`, `[TRAILER_URL_2]`, etc.
+* **Fundo:** Gradiente radial/linear em tons de azul escuro e roxo.
+* **Moldura do Player:** Container com cantos arredondados, sombra externa e borda fina em gradiente multicolorido.
+* **Controles de Navegação:**
+* Ícone de seta (Anterior).
+* Ícone de seta (Próximo).
+* Paginação: 4 indicadores circulares (dots).
+
+
+
+---
+
+## 3. Estrutura de Camadas (Figma Hierarchy)
+
+A estrutura deve seguir a ordem de empilhamento definida no arquivo original:
+
+1. **Section - Trailers (Root)**
+* `Gradient` (Fundo base).
+* `Container` (Centralizador de conteúdo).
+* `Heading 2` (Agrupador: Overline + H2 + Subtitle).
+* `Container Player`:
+* `Overlay+Border+Shadow` (Camada de efeitos estéticos).
+* `Background` (Iframe / Thumbnail).
+
+
+* `Container Controles`:
+* `Button - Trailer anterior`.
+* `Tablist - Selecionar trailer`.
+* `Button - Proximo trailer`.
+
+
+
+
+
+
+
+---
+
+## 4. Arquitetura HTML Recomendada
+
+A marcação deve ser semântica e focar em acessibilidade:
+
+* `<section>`: Container principal da seção.
+* `<header>`: Agrupa as três linhas de texto superiores.
+* `<div>` (Player Wrapper):
+* `<iframe>`: Com os atributos `loading="lazy"`, `title="[Título do Trailer]"`, `src="[TRAILER_URL_n]"`.
+* `<div>` (UI Overlays): Para ícones de play, link e logo do canal.
+
+
+* `<nav>` ou `<div>` (Carousel Controls):
+* `<button aria-label="Trailer anterior">`.
+* `<div role="tablist">` (Paginação).
+* `<button aria-label="Próximo trailer">`.
+
+
+
+---
 
 ## 5. Design Tokens (Referenciais)
 
 * **Cores:**
-* Primária: Branco (Texto principal).
-* Destaque: Dourado/Amarelo (Label "ASSISTA AGORA").
-* Ação: Vermelho (Botão Play YouTube).
-* Acento: Azul Piscina/Teal (Dot ativo).
-* Borda: Gradiente linear (efeito neon).
+* Primary Text: White (#FFFFFF).
+* Accent: Cyan/Blue (usado no Dot ativo).
+* Background: Deep Blue/Purple Gradient.
 
 
-* **Tipografia:**
-* Títulos: Sans-serif, peso Bold/Heavy.
-* Labels: Sans-serif, caixa alta (Uppercase), espaçamento entre letras (Letter-spacing).
+* **Bordas:**
+* Radius: Aplicado ao container do vídeo e botões circulares.
+* Border-width: Fina (aprox. 1px ou 2px) com gradiente linear.
 
 
-
-## 6. Comportamento e Estados
-
-* **Botão Play:** Estado estático centralizado; aciona o carregamento/reprodução do vídeo.
-* **Paginação (Dots):**
-* `Ativo`: Cor Azul/Teal.
-* `Inativo`: Cor Cinza escuro/baixa opacidade.
-
-
-* **Setas de Navegação:**
-* `Desabilitado`: Opacidade reduzida (ex: quando no primeiro item do carrossel).
-* `Hover`: Feedback visual de interatividade.
-
-
-* **Overlay YouTube:** Botão tipo pílula translúcido que redireciona para a plataforma externa.
-
-## 7. Responsividade
-
-* **Desktop:**
-* Card centralizado ocupando ~50% da largura horizontal.
-* Marca d'água "TRAILERS" visível à direita.
-
-
-* **Mobile:**
-* Card expandido para ~90% da largura da tela.
-* Texto do título do vídeo no card com truncamento (Ex: "The Super Mario Bros. Movie | O...").
-* Marca d'água removida ou oculta para priorizar legibilidade.
+* **Opacidade:**
+* Watermark "TRAILERS": ~5% a 10% de opacidade.
+* Seta inativa/default: ~30% de opacidade.
 
 
 
-## 8. Suposições Técnicas
+---
 
-* O carrossel é infinito ou possui limite baseado no número de dots (4 itens visíveis no mapeamento).
-* O efeito de borda iluminada (glow) é contínuo e acompanha o arredondamento dos cantos do card.
-* O fundo é um gradiente fixo que não rola com o conteúdo interno do carrossel.
+## 6. Estados dos Componentes
 
-## 9. Checklist de Implementação
+* **Dots (Paginação):**
+* *Default:* Círculo pequeno, opacidade reduzida.
+* *Ativo:* Círculo destacado, cor sólida (Cyan).
 
-* [ ] Implementar `loading="lazy"` em todos os iframes de vídeo.
-* [ ] Garantir que o título literal do vídeo apareça no overlay superior.
-* [ ] Validar o contraste do texto dourado contra o fundo escuro.
-* [ ] Certificar que o ícone de link inferior esquerdo seja clicável.
-* [ ] Aplicar o arredondamento de cantos (border-radius) idêntico ao design.
 
-## 10. Critérios de Aceite
+* **Botões de Navegação:**
+* *Hover:* Aumento leve na opacidade ou brilho.
+* *Disabled:* Opacidade mínima (conforme visto na seta da esquerda).
 
-* A seção deve ser visualmente idêntica aos prints fornecidos em ambas as resoluções.
-* A navegação entre os trailers deve atualizar o estado visual dos "dots" inferiores.
-* O título e subtítulo devem manter o alinhamento centralizado absoluto.
+
+* **Player:**
+* *Hover:* O overlay de borda colorida e sombra pode intensificar o brilho.
+
+
+
+---
+
+## 7. Responsividade e Comportamento
+
+* **Alinhamento:** Todo o conteúdo deve permanecer centralizado horizontalmente no viewport.
+* **Escalonamento:** O player deve manter a proporção de 16:9. Em telas menores, o texto de fundo (Watermark) pode ser ocultado para priorizar a legibilidade.
+* **Carregamento:** Todos os iframes de trailers subsequentes devem utilizar `loading="lazy"` para otimizar a performance da página.
+
+---
+
+## 8. Checklist de Critérios de Aceite
+
+* [ ] O texto "Trailers oficiais" deve ser a tag `<h2>`.
+* [ ] O segundo dot de paginação deve iniciar como ativo (conforme o print).
+* [ ] A borda do player deve ser um gradiente contínuo, não uma cor sólida.
+* [ ] O botão "Assista no YouTube" deve abrir o vídeo em nova aba (`_blank`).
+* [ ] O título do vídeo dentro do player deve corresponder ao trailer selecionado.
+
+---
+
+## 9. Suposições Técnicas
+
+* O texto de fundo "TRAILERS" é um elemento estático de design, não interagível.
+* A navegação entre os vídeos altera o `src` do iframe principal ou translada um container de slides.
+* A baixa opacidade da seta esquerda no print indica que o usuário está no primeiro item (ou o estado padrão é suavizado).

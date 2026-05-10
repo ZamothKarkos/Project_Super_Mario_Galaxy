@@ -7,7 +7,8 @@
     <title>Super Mario Galaxy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -68,17 +69,21 @@
         </div>
 
         <div class="hero__ornaments" aria-hidden="true">
-            <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--left" width="50" height="50">
-            <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--right" width="50" height="50">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--left" width="50"
+                height="50">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--right" width="50"
+                height="50">
 
             <div class="hero__scroll-indicator">
-                <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--scroll" width="50" height="50">
+                <img src="src/assets/images/estrela-min.webp" alt="" class="hero__luma hero__luma--scroll" width="50"
+                    height="50">
                 <span class="hero__scroll-text">Role para explorar</span>
             </div>
         </div>
     </section>
 
-    <section id="marquee-personagens" class="marquee-personagens" aria-label="Destaques: Super Mario Galaxy, nos cinemas, aventura pelo cosmos, Mario, Luigi e Rosalina.">
+    <section id="marquee-personagens" class="marquee-personagens"
+        aria-label="Destaques: Super Mario Galaxy, nos cinemas, aventura pelo cosmos, Mario, Luigi e Rosalina.">
         <div class="marquee-personagens__viewport">
             <div class="marquee-personagens__track">
                 <div class="marquee-personagens__group">
@@ -114,6 +119,8 @@
     <section id="personagens" class="personagens" aria-labelledby="personagens-heading">
         <div id="characters" class="personagens__rail">
             <div class="personagens__background" aria-hidden="true"></div>
+            <!-- Contêiner ParticlesJS para a seção de personagens -->
+            <div id="particles-js" class="personagens__particles"></div>
             <header class="personagens__header">
                 <p class="personagens__eyebrow">CONHEÇA O ELENCO</p>
                 <h2 id="personagens-heading" class="personagens__title">Personagens</h2>
@@ -121,45 +128,170 @@
             </header>
             <div class="personagens__stage">
                 <article class="personagens__figure personagens__figure--mario">
-                    <img class="personagens__img" src="src/assets/images/mario-original.webp" alt="Mario em pose de voo com os braços abertos." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/mario-original.webp"
+                        alt="Mario em pose de voo com os braços abertos." loading="lazy">
                     <p class="personagens__caption">Mario</p>
                 </article>
                 <article class="personagens__figure personagens__figure--peach">
-                    <img class="personagens__img" src="src/assets/images/peach.webp" alt="Peach com guarda-chuva rosa aberto." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/peach.webp"
+                        alt="Peach com guarda-chuva rosa aberto." loading="lazy">
                     <p class="personagens__caption">Peach</p>
                 </article>
                 <article class="personagens__figure personagens__figure--luigi">
-                    <img class="personagens__img" src="src/assets/images/luigi.webp" alt="Luigi em queda, cabeça para baixo." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/luigi.webp"
+                        alt="Luigi em queda, cabeça para baixo." loading="lazy">
                     <p class="personagens__caption">Luigi</p>
                 </article>
                 <article class="personagens__figure personagens__figure--yoshi">
-                    <img class="personagens__img" src="src/assets/images/yoshi-perso.webp" alt="Yoshi em corrida." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/yoshi-perso.webp" alt="Yoshi em corrida."
+                        loading="lazy">
                     <p class="personagens__caption">Yoshi</p>
                 </article>
                 <article class="personagens__figure personagens__figure--bowser-jr">
-                    <img class="personagens__img" src="src/assets/images/bowser-jr.webp" alt="Bowser Jr. no Clown Car com pincel mágico." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/bowser-jr.webp"
+                        alt="Bowser Jr. no Clown Car com pincel mágico." loading="lazy">
                     <p class="personagens__caption">Bowser Jr.</p>
                 </article>
                 <article class="personagens__figure personagens__figure--rosalina">
-                    <img class="personagens__img" src="src/assets/images/rosalina.webp" alt="Rosalina em pé com varinha." loading="lazy">
+                    <img class="personagens__img" src="src/assets/images/rosalina.webp"
+                        alt="Rosalina em pé com varinha." loading="lazy">
                     <p class="personagens__caption">Rosalina</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <section id="trailers" class="page-section" aria-labelledby="trailers-heading">
-        <h2 id="trailers-heading">Trailers</h2>
-        <p>Reviva os momentos mais marcantes em vídeo.</p>
+    <section id="trailers" class="trailers" aria-labelledby="trailers-heading">
+        <div class="trailers__bg" aria-hidden="true">
+            <span class="trailers__watermark">TRAILERS</span>
+        </div>
+        <div class="trailers__content">
+            <header class="trailers__header">
+                <span class="trailers__label">ASSISTA AGORA</span>
+                <h2 id="trailers-heading" class="trailers__title">Trailers oficiais</h2>
+                <p class="trailers__subtitle">CLIPES DA AVENTURA NO ESPAÇO</p>
+            </header>
+
+            <div class="trailers__carousel">
+                <div class="trailers__card">
+                    <div class="trailers__video-container">
+                        <iframe class="trailers__iframe" loading="lazy"
+                            title="The Super Mario Bros. Movie | Official Trailer" src="[TRAILER_URL_1]" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        <div class="trailers__overlays">
+                            <div class="trailers__overlay-top">
+                                <div class="trailers__channel-avatar"></div>
+                                <span class="trailers__video-title">The Super Mario Bros. Movie | O...</span>
+                            </div>
+                            <button class="trailers__play-btn" aria-label="Reproduzir vídeo">
+                                <svg width="68" height="48" viewBox="0 0 68 48" fill="red">
+                                    <path
+                                        d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.01 34 0 34 0S12.21.01 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.01 13.05 0 24 0 24s.01 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.99 34 48 34 48s21.79-.01 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.99 34.95 68 24 68 24s-.01-10.95-1.48-16.26z" />
+                                    <path d="M27 34l18-10-18-10v20z" fill="#fff" />
+                                </svg>
+                            </button>
+                            <div class="trailers__overlay-bottom">
+                                <a href="[TRAILER_URL_1]" target="_blank" class="trailers__link-icon"
+                                    aria-label="Copiar link">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                    </svg>
+                                </a>
+                                <a href="[TRAILER_URL_1]" target="_blank" rel="noopener noreferrer"
+                                    class="trailers__youtube-btn">
+                                    Assista no <svg style="margin-inline: 4px;" width="24" height="16"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+                                            fill="red" />
+                                        <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#fff" />
+                                    </svg> YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trailers__controls">
+                <button class="trailers__arrow trailers__arrow--prev" disabled aria-label="Trailer Anterior">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="trailers__dots">
+                    <span class="trailers__dot"></span>
+                    <span class="trailers__dot trailers__dot--active" aria-current="true"></span>
+                    <span class="trailers__dot"></span>
+                    <span class="trailers__dot"></span>
+                </div>
+
+                <button class="trailers__arrow trailers__arrow--next" aria-label="Próximo Trailer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </section>
 
-    <section id="release" class="page-section" aria-labelledby="release-heading">
-        <h2 id="release-heading">Estreia</h2>
-        <p>Informações sobre lançamento e novidades.</p>
+    <section id="estreia" class="estreia" data-target-date="[DATA_DA_ESTREIA]">
+        <div class="estreia__bg" aria-hidden="true"></div>
+
+        <div class="estreia__ornaments" aria-hidden="true">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="estreia__star estreia__star--1" loading="lazy">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="estreia__star estreia__star--2" loading="lazy">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="estreia__star estreia__star--3" loading="lazy">
+            <img src="src/assets/images/estrela-min.webp" alt="" class="estreia__star estreia__star--4" loading="lazy">
+        </div>
+
+        <div class="estreia__content">
+            <h2 class="estreia__quote">
+                Cada <span class="estreia__highlight">estrela</span> guarda uma historia.<br>
+                A sua começa <span class="estreia__highlight">agora.</span>
+            </h2>
+
+            <p class="estreia__movie-title">SUPER MARIO GALAXY: O FILME</p>
+
+            <hr class="estreia__divider" aria-hidden="true">
+
+            <p class="estreia__countdown-label">ESTREIA NOS CINEMAS EM</p>
+
+            <div class="estreia__countdown-container overlay-blur">
+                <div class="estreia__countdown-item">
+                    <span class="estreia__countdown-value" data-countdown="days">00</span>
+                    <span class="estreia__countdown-unit">DIAS</span>
+                </div>
+                <div class="estreia__countdown-item">
+                    <span class="estreia__countdown-value" data-countdown="hours">00</span>
+                    <span class="estreia__countdown-unit">HORAS</span>
+                </div>
+                <div class="estreia__countdown-item">
+                    <span class="estreia__countdown-value" data-countdown="minutes">00</span>
+                    <span class="estreia__countdown-unit">MIN</span>
+                </div>
+                <div class="estreia__countdown-item">
+                    <span class="estreia__countdown-value" data-countdown="seconds">00</span>
+                    <span class="estreia__countdown-unit">SEG</span>
+                </div>
+            </div>
+
+            <p class="estreia__release-date">Dia 25 de Dezembro, 2026</p>
+        </div>
     </section>
 
     <script src="src/js/starfield.js"></script>
     <script src="src/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Script com as configurações mapeadas das partículas -->
+    <script src="src/js/particles.js"></script>
+
 </body>
 
 </html>

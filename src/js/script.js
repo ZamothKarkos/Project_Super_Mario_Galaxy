@@ -88,7 +88,124 @@ function initFloatingNav() {
   syncNavState();
 }
 
+
+function initScrollAnim() {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  
+  const els = {
+    mario: hero.querySelector('.hero__asset--mario'),
+    yoshi: hero.querySelector('.hero__asset--yoshi'),
+    planet: hero.querySelector('.hero__asset--planet'),
+    content: hero.querySelector('.hero__content'),
+    starLeft: hero.querySelector('.hero__luma--left'),
+    starRight: hero.querySelector('.hero__luma--right'),
+    starCenter: hero.querySelector('.hero__luma--scroll')
+  };
+
+  function easeOutExpo(x) {
+    return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+  }
+
+  function mapRange(val, inMin, inMax, outMin, outMax) {
+    return outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin));
+  }
+
+  let rafId = null;
+
+  function onScroll() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      if (motionQuery.matches) return;
+
+      const rect = hero.getBoundingClientRect();
+      const heroHeight = rect.height;
+      
+      let rawProgress = window.scrollY / heroHeight;
+      if (rawProgress < 0) rawProgress = 0;
+      if (rawProgress > 1) rawProgress = 1;
+
+      if (els.mario) {
+        let p = rawProgress;
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, -200);
+        let rot = mapRange(eased, 0, 1, 0, 8);
+        let op = mapRange(eased, 0, 1, 1, 0.3);
+        els.mario.style.transform = `translateY(${y}px) rotate(${rot}deg)`;
+        els.mario.style.opacity = op;
+      }
+
+      if (els.yoshi) {
+        let p = rawProgress;
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, -180);
+        let rot = mapRange(eased, 0, 1, 0, -6);
+        let op = mapRange(eased, 0, 1, 1, 0.3);
+        els.yoshi.style.transform = `scaleX(-1) translateY(${y}px) rotate(${rot}deg)`;
+        els.yoshi.style.opacity = op;
+      }
+
+      if (els.planet) {
+        let p = (rawProgress - 0.1) / (0.9 - 0.1);
+        p = Math.max(0, Math.min(1, p));
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, 120);
+        let scale = mapRange(eased, 0, 1, 1, 1.3);
+        let op = mapRange(eased, 0, 1, 1, 0);
+        els.planet.style.transform = `translateX(-50%) translateY(${y}px) scale(${scale})`;
+        els.planet.style.opacity = op;
+      }
+
+      if (els.content) {
+        let p = rawProgress / 0.5;
+        p = Math.max(0, Math.min(1, p));
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, -100);
+        let op = mapRange(eased, 0, 1, 1, 0);
+        els.content.style.transform = `translateY(${y}px)`;
+        els.content.style.opacity = op;
+      }
+
+      if (els.starLeft) {
+        let p = rawProgress;
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, -350);
+        let rot = mapRange(eased, 0, 1, 0, 45);
+        els.starLeft.style.transform = `translateY(${y}px) rotate(${rot}deg)`;
+      }
+
+      if (els.starRight) {
+        let p = rawProgress;
+        let eased = easeOutExpo(p);
+        let y = mapRange(eased, 0, 1, 0, -300);
+        let rot = mapRange(eased, 0, 1, 0, -30);
+        els.starRight.style.transform = `translateY(${y}px) rotate(${rot}deg)`;
+      }
+
+      if (els.starCenter) {
+        let p = (rawProgress - 0.2) / (0.8 - 0.2);
+        p = Math.max(0, Math.min(1, p));
+        let eased = easeOutExpo(p);
+        let scale = mapRange(eased, 0, 1, 1, 4.0);
+        let op = mapRange(eased, 0, 1, 1, 0);
+        els.starCenter.style.transform = `scale(${scale})`;
+        els.starCenter.style.opacity = op;
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initStarfield();
   initFloatingNav();
+  initScrollAnim();
 });
+
+// A inicialização das partículas (anteriormente initPersonagensBg)
+// agora é feita automaticamente via src/js/particles.js

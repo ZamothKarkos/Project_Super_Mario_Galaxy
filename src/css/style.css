@@ -132,6 +132,14 @@
     --stagger-max: 400ms;
   
     --motion-reduce: 0.01ms;
+
+    /* Variáveis mapeadas para Particles - Personagens */
+    --particle-color: var(--cosmic-cyan);
+    --particle-line-color: var(--cosmic-purple);
+    --particle-accent-color: var(--cosmic-rose);
+    --bg-char-gradient-start: var(--bg-deep);
+    --bg-char-gradient-mid: var(--bg-mid);
+    --bg-char-gradient-end: var(--bg-surface);
   }
 
   *,
@@ -310,6 +318,10 @@
 
   .hero__layer--characters {
     z-index: 30;
+    max-width: 1200px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   .hero__asset {
@@ -323,7 +335,7 @@
   .hero__asset--planet {
     bottom: -10%;
     left: 50%;
-    width: min(800.25px, 94.575vw);
+    width: min(480.15px, 56.745vw);
     transform: translateX(-50%);
   }
 
@@ -530,7 +542,7 @@
     }
 
     .hero__asset--planet {
-      width: min(654.75px, 116.4vw);
+      width: min(392.85px, 69.84vw);
       bottom: -14%;
     }
 
@@ -567,13 +579,15 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background:
-      radial-gradient(ellipse 95% 75% at 50% 42%, var(--bg-mid) 0%, var(--bg-surface) 45%, color-mix(in srgb, var(--cosmic-purple) 38%, var(--bg-deep) 62%) 100%),
-      radial-gradient(ellipse 85% 70% at 12% 88%, color-mix(in srgb, var(--cosmic-purple) 32%, transparent) 0%, transparent 55%),
-      radial-gradient(ellipse 75% 65% at 92% 10%, color-mix(in srgb, var(--cosmic-purple) 28%, transparent) 0%, transparent 52%),
-      radial-gradient(ellipse 100% 55% at 50% 100%, color-mix(in srgb, var(--cosmic-cyan) 14%, transparent) 0%, transparent 48%),
-      var(--bg-deep);
     pointer-events: none;
+  }
+
+  /* Contêiner das partículas - conforme mapeamento (fundo com gradiente) */
+  .personagens__particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(to top right, var(--bg-char-gradient-start), var(--bg-char-gradient-mid), var(--bg-char-gradient-end));
   }
 
   .personagens__header {
@@ -618,12 +632,13 @@
 
   .personagens__stage {
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Elevado para ficar acima das partículas */
     width: 100%;
     max-width: min(72rem, 100%);
     margin-inline: auto;
     min-height: clamp(38rem, 62vh, 52rem);
-    /* Posicionamento livre: sem grid no palco (spec §3) */
+    /* Permite interagir com as partículas no fundo (hover/click) */
+    pointer-events: none; 
   }
 
   .personagens__figure {
@@ -634,6 +649,8 @@
     width: max-content;
     max-width: min(42vw, 240px);
     margin: 0;
+    /* Reativa os eventos de ponteiro para as figuras (já que stage está com none) */
+    pointer-events: auto;
   }
 
   .personagens__img {
