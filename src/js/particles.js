@@ -1,3 +1,9 @@
+/**
+ * Este script configura e inicializa a biblioteca ParticlesJS usada no fundo da seção "Personagens".
+ * Ele lê as variáveis de cor (tokens) diretamente do CSS (:root) para garantir
+ * que as partículas sigam o tema visual de forma dinâmica.
+ */
+
 // Obtendo os tokens definidos no :root
 const style = getComputedStyle(document.documentElement);
 const particleColor = style.getPropertyValue('--particle-color').trim() || '#5ce0d8';

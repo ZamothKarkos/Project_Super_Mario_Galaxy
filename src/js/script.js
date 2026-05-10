@@ -1,5 +1,11 @@
+// IDs das seções principais usadas para controle do scroll spy da navegação lateral
 const SECTION_IDS = ['hero', 'characters', 'trailers', 'release'];
 
+/**
+ * Inicializa e gerencia a barra de navegação lateral (floating nav).
+ * Observa o scroll da página para mostrar/ocultar a navegação e atualizar
+ * qual link está ativo baseando-se na seção visível no centro da tela.
+ */
 function initFloatingNav() {
   const nav = document.getElementById('floating-nav');
   if (!nav) return;
@@ -26,6 +32,10 @@ function initFloatingNav() {
     });
   }
 
+  /**
+   * Resolve e retorna qual o ID da seção que está atualmente visível.
+   * A lógica checa qual seção cruza a linha central (midY) da viewport.
+   */
   function resolveActiveSectionId() {
     if (!sections.length) return 'hero';
 
@@ -89,6 +99,10 @@ function initFloatingNav() {
 }
 
 
+/**
+ * Inicializa a animação de scroll manual (Parallax básico no Hero).
+ * Manipula a posição e opacidade dos elementos conforme o usuário desce a página.
+ */
 function initScrollAnim() {
   const hero = document.getElementById('hero');
   if (!hero) return;
@@ -105,10 +119,18 @@ function initScrollAnim() {
     starCenter: hero.querySelector('.hero__luma--scroll')
   };
 
+  /**
+   * Função de suavização (easing) Exponencial (Out).
+   * Faz com que a animação comece rápida e desacelere suavemente no final.
+   */
   function easeOutExpo(x) {
     return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
   }
 
+  /**
+   * Mapeia um valor numérico (val) do intervalo [inMin, inMax] para [outMin, outMax].
+   * Utilizado para converter a porcentagem do scroll em pixels ou graus.
+   */
   function mapRange(val, inMin, inMax, outMin, outMax) {
     return outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin));
   }
@@ -201,10 +223,30 @@ function initScrollAnim() {
   onScroll();
 }
 
+/**
+ * Inicializa os vídeos dos trailers, permitindo ocultar a sobreposição ao dar play.
+ */
+function initTrailersVideo() {
+  const playBtn = document.querySelector('.trailers__play-btn');
+  const overlays = document.querySelector('.trailers__overlays');
+  const iframe = document.querySelector('.trailers__iframe');
+
+  if (playBtn && overlays && iframe) {
+    playBtn.addEventListener('click', () => {
+      overlays.style.display = 'none';
+      let src = iframe.getAttribute('src');
+      if (!src.includes('autoplay=1')) {
+        iframe.setAttribute('src', src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
+      }
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initStarfield();
   initFloatingNav();
   initScrollAnim();
+  initTrailersVideo();
 });
 
 // A inicialização das partículas (anteriormente initPersonagensBg)

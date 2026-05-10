@@ -14,7 +14,16 @@
 </head>
 
 <body>
+    <!-- =========================================
+         ELEMENTOS DE FUNDO GLOBAIS
+         ========================================= -->
+    <!-- Canvas para o efeito visual de campo estelar (starfield) -->
     <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <!-- =========================================
+         NAVEGAÇÃO FLUTUANTE
+         ========================================= -->
+    <!-- Menu de navegação lateral fixa que aparece após o scroll -->
     <nav class="nav-sectional" id="floating-nav" aria-label="Navegação de seções" aria-hidden="true">
         <div class="nav-sectional__container">
             <ul class="nav-sectional__list">
@@ -35,7 +44,16 @@
         </div>
     </nav>
 
-    <section id="hero" class="hero" aria-label="Início">
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL DA PÁGINA
+         ========================================= -->
+    <!-- Utilização da tag <main> melhora a acessibilidade e estrutura semântica do documento -->
+    <main>
+        <!-- =========================================
+             SEÇÃO: HERO (INÍCIO)
+             ========================================= -->
+        <!-- Primeira seção visual da página, contendo o logo, vídeos em looping e CTA primário -->
+        <section id="hero" class="hero" aria-label="Início">
         <div class="hero__background" aria-hidden="true"></div>
 
         <div class="hero__layer hero__layer--planet" aria-hidden="true">
@@ -82,8 +100,12 @@
         </div>
     </section>
 
-    <section id="marquee-personagens" class="marquee-personagens"
-        aria-label="Destaques: Super Mario Galaxy, nos cinemas, aventura pelo cosmos, Mario, Luigi e Rosalina.">
+        <!-- =========================================
+             SEÇÃO: MARQUEE DE PERSONAGENS
+             ========================================= -->
+        <!-- Faixa de texto infinita animada para transição visual -->
+        <section id="marquee-personagens" class="marquee-personagens"
+            aria-label="Destaques: Super Mario Galaxy, nos cinemas, aventura pelo cosmos, Mario, Luigi e Rosalina.">
         <div class="marquee-personagens__viewport">
             <div class="marquee-personagens__track">
                 <div class="marquee-personagens__group">
@@ -116,9 +138,13 @@
         </div>
     </section>
 
-    <section id="personagens" class="personagens" aria-labelledby="personagens-heading">
-        <div id="characters" class="personagens__rail">
-            <div class="personagens__background" aria-hidden="true"></div>
+        <!-- =========================================
+             SEÇÃO: PERSONAGENS
+             ========================================= -->
+        <!-- Exibição interativa dos personagens principais utilizando efeito LERP e partículas -->
+        <section id="characters" class="personagens" aria-labelledby="personagens-heading">
+            <div class="personagens__rail">
+                <div class="personagens__background" aria-hidden="true"></div>
             <!-- Contêiner ParticlesJS para a seção de personagens -->
             <div id="particles-js" class="personagens__particles"></div>
             <header class="personagens__header">
@@ -159,9 +185,13 @@
                 </article>
             </div>
         </div>
-    </section>
+        </section>
 
-    <section id="trailers" class="trailers" aria-labelledby="trailers-heading">
+        <!-- =========================================
+             SEÇÃO: TRAILERS
+             ========================================= -->
+        <!-- Galeria de vídeos (Trailers) da campanha do filme -->
+        <section id="trailers" class="trailers" aria-labelledby="trailers-heading">
         <div class="trailers__bg" aria-hidden="true">
             <span class="trailers__watermark">TRAILERS</span>
         </div>
@@ -176,7 +206,7 @@
                 <div class="trailers__card">
                     <div class="trailers__video-container">
                         <iframe class="trailers__iframe" loading="lazy"
-                            title="The Super Mario Bros. Movie | Official Trailer" src="[TRAILER_URL_1]" frameborder="0"
+                            title="The Super Mario Bros. Movie | Official Trailer" src="https://www.youtube.com/embed/HRyy_FdyieU" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                         <div class="trailers__overlays">
@@ -192,7 +222,7 @@
                                 </svg>
                             </button>
                             <div class="trailers__overlay-bottom">
-                                <a href="[TRAILER_URL_1]" target="_blank" class="trailers__link-icon"
+                                <a href="https://www.youtube.com/watch?v=HRyy_FdyieU" target="_blank" class="trailers__link-icon"
                                     aria-label="Copiar link">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -200,7 +230,7 @@
                                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                                     </svg>
                                 </a>
-                                <a href="[TRAILER_URL_1]" target="_blank" rel="noopener noreferrer"
+                                <a href="https://www.youtube.com/watch?v=HRyy_FdyieU" target="_blank" rel="noopener noreferrer"
                                     class="trailers__youtube-btn">
                                     Assista no <svg style="margin-inline: 4px;" width="24" height="16"
                                         viewBox="0 0 24 24" fill="none">
@@ -241,7 +271,11 @@
         </div>
     </section>
 
-    <section id="estreia" class="estreia" data-target-date="[DATA_DA_ESTREIA]">
+        <!-- =========================================
+             SEÇÃO: ESTREIA (LANÇAMENTO)
+             ========================================= -->
+        <!-- Contagem regressiva e data oficial de lançamento nos cinemas -->
+        <section id="release" class="estreia" data-target-date="[DATA_DA_ESTREIA]">
         <div class="estreia__bg" aria-hidden="true"></div>
 
         <div class="estreia__ornaments" aria-hidden="true">
@@ -284,8 +318,13 @@
 
             <p class="estreia__release-date">Dia 25 de Dezembro, 2026</p>
         </div>
-    </section>
+        </section>
+    </main>
 
+    <!-- =========================================
+         SCRIPTS
+         ========================================= -->
+    <!-- Scripts organizados por responsabilidade -->
     <script src="src/js/starfield.js"></script>
     <script src="src/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

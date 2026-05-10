@@ -115,6 +115,10 @@ function initStarfield() {
     }));
   }
 
+  /**
+   * Cria os objetos que representam as estrelas baseando-se no tamanho da tela.
+   * Divide as estrelas em 3 'layers' para dar a sensação de profundidade (Parallax 2D).
+   */
   function buildStars(w, h) {
     const area = w * h;
     const count = Math.max(80, Math.floor(area / 5500));
@@ -156,6 +160,10 @@ function initStarfield() {
     };
   }
 
+  /**
+   * Loop principal de renderização do canvas. Limpa a tela, desenha os 'glows' (brilhos)
+   * e então desenha e move cada estrela baseando-se no tempo percorrido.
+   */
   function drawFrame(timeMs) {
     const w = canvas.width;
     const h = canvas.height;

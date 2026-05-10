@@ -119,6 +119,10 @@
     let raf = 0;
     let destroyed = false;
 
+    /**
+     * Calcula a diferença entre o centro da viewport e o centro do elemento "trigger".
+     * Esse "offset" determina a intensidade do efeito parallax no momento atual.
+     */
     function offsetFor(el) {
       const ref = trigger || el;
       const rect = ref.getBoundingClientRect();
@@ -127,18 +131,26 @@
       return viewCenter - refCenter;
     }
 
+    /**
+     * Atualiza os valores alvos (targetY, targetRot, targetScale) de cada elemento
+     * com base em sua distância em relação ao centro da tela (offset).
+     */
     function computeTargets() {
       targets.forEach((el) => {
         const s = state.get(el);
         if (!s) return;
         const offset = offsetFor(el);
-        const norm = offset / window.innerHeight;
+        const norm = offset / window.innerHeight; // normaliza a distância (0 a 1)
         s.targetY = offset * s.speed;
         s.targetRot = norm * s.maxRot;
         s.targetScale = 1 + norm * s.scaleAmt;
       });
     }
 
+    /**
+     * Loop de renderização que aplica o LERP (Linear Interpolation).
+     * O valor atual se aproxima gradualmente do valor alvo, gerando a "suavidade".
+     */
     function render(force) {
       let stillAnimating = false;
       targets.forEach((el) => {
