@@ -1,0 +1,31 @@
+# Conclusão do Refatoramento Semântico e Documentação
+
+O trabalho de refatoramento completo do projeto "Super Mario Galaxy Project" foi concluído com sucesso. Abaixo está o resumo das alterações feitas para melhorar a semântica e facilitar a manutenção do código por meio de comentários explicativos.
+
+## O que foi feito:
+
+### 1. HTML (`index.html`)
+- **Adição da tag `<main>`**: Todo o conteúdo das seções visíveis (Hero, Personagens, Trailers, Estreia) foi englobado dentro da tag semântica `<main>`, melhorando a acessibilidade e estrutura para SEO.
+- **Correção de IDs de Seção**:
+  - O `id` da seção de personagens foi atualizado para `id="characters"` (antes o ID estava dentro da div e a seção se chamava "personagens"). Isso sincroniza o link de navegação (`href="#characters"`) e corrige a lógica do Scroll Spy no JS.
+  - A seção "Estreia" foi atualizada para `id="release"` para alinhar com a lógica pré-existente no JavaScript.
+- **Comentários de Estrutura**: Blocos de comentários foram adicionados no início de cada seção para explicar de forma clara a utilidade e a composição visual de cada parte do site.
+
+### 2. CSS (`style.css`)
+- **Organização por Blocos**: Adicionamos comentários estruturais separando visualmente:
+  - Tokens e Variáveis Globais (`:root`).
+  - Configurações Base e Reset.
+  - O componente de Navegação Flutuante (`.nav-sectional`).
+  - Estilos específicos de cada seção do projeto (Hero, Personagens, Marquee).
+
+### 3. JavaScript
+Todos os 4 arquivos de interação e efeitos visuais foram documentados através da inserção do padrão JSDoc e comentários contextuais.
+- **`script.js`**: Explicamos a lógica do controle do Menu Flutuante (`resolveActiveSectionId`) e da animação inicial de Scroll do Hero (`initScrollAnim`, `easeOutExpo`, `mapRange`).
+- **`scroll-animations.js`**: Inserimos explicações na matemática do Parallax LERP e de como a distância da viewport afeta a movimentação vertical e a rotação dos elementos (`computeTargets`).
+- **`particles.js`**: Explicamos a configuração base, além de destacar a vinculação dinâmica das cores através das variáveis lidas direto do CSS (`getComputedStyle`).
+- **`starfield.js`**: Todo o funcionamento matemático que desenha as estrelas no `canvas` frame-a-frame foi detalhado.
+
+## Validação
+
+> [!NOTE]
+> Você já pode rodar e verificar o projeto no navegador. Nenhuma parte visual ou design foi alterado, o foco foi inteiramente melhorar as boas práticas de desenvolvimento (Clean Code e Semântica). Tudo deve continuar funcionando perfeitamente!
